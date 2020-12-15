@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-saloon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-saloon
+  template:
+    metadata:
+      labels:
+        app: db-saloon
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: saloon
+            - name: POSTGRES_PASSWORD
+              value: "password"
+            - name: POSTGRES_USER
+              value: postgres
+          image: postgres
+          imagePullPolicy: IfNotPresent
+          name: db-saloon
+          ports:
+            - containerPort: 5432

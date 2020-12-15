@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pub-visitors
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub-visitors
+  template:
+    metadata:
+      labels:
+        app: pub-visitors
+    spec:
+      containers:
+        -
+          image: datowl/visitors
+          name: pub-visitors
+          ports:
+            - containerPort: 8083
+              name: rest
+            - containerPort: 9083
+              name: grpc

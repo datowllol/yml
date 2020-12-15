@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pub-saloon
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub-saloon
+  template:
+    metadata:
+      labels:
+        app: pub-saloon
+    spec:
+      containers:
+        -
+          image: datowl/saloon
+          name: pub-saloonde
+          ports:
+            - containerPort: 8084
+              name: rest
+            - containerPort: 9084
+              name: grpc

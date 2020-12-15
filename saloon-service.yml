@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pub-saloon
+spec:
+  type: ClusterIP
+  ports:
+    - name: rest
+      port: 8084
+      targetPort: 8084
+    - name: grpc
+      port: 9084
+      targetPort: 9084
+  selector:
+    app: pub-saloon

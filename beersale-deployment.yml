@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pub-beersale
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub-beersale
+  template:
+    metadata:
+      labels:
+        app: pub-beersale
+    spec:
+      containers:
+        -
+          image: datowl/beersale
+          name: pub-beersale
+          ports:
+            - containerPort: 8085
+              name: rest
+            - containerPort: 9085
+              name: grpc

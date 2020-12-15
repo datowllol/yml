@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pub-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pub-gateway
+  template:
+    metadata:
+      labels:
+        app: pub-gateway
+    spec:
+      containers:
+        -
+          image: datowl/gateway
+          name: pub-gateway
+          ports:
+            - containerPort: 8081
+              name: rest
+            - containerPort: 7081
+              name: grpc
